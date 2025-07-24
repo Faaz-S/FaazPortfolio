@@ -244,15 +244,7 @@ export default function Home() {
                 ))}
               </div>
               
-              <div className="text-center mt-12">
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-black font-semibold rounded-lg transition-all duration-300"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Read: Cloud Debugging & Serverless Troubleshooting
-                </a>
-              </div>
+              
             </div>
           </SectionWrapper>
 
