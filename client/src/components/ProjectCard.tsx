@@ -8,6 +8,7 @@ interface ProjectCardProps {
   accentColor: 'green' | 'cyan' | 'red';
   githubUrl?: string;
   liveUrl?: string;
+  imageUrl?: string;
 }
 
 export default function ProjectCard({
@@ -18,6 +19,7 @@ export default function ProjectCard({
   accentColor,
   githubUrl,
   liveUrl,
+  imageUrl,
 }: ProjectCardProps) {
   const colorClasses = {
     green: {
@@ -41,14 +43,22 @@ export default function ProjectCard({
 
   return (
     <div className="project-card bg-dark-card rounded-xl overflow-hidden">
-      {/* Project Image Placeholder */}
+      {/* Project Image */}
       <div className="aspect-video bg-dark-bg relative overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center text-gray-400">
-            <FileCode className="w-16 h-16 mx-auto mb-2 opacity-50" />
-            <p className="text-sm font-mono">{title} Preview</p>
+        {imageUrl ? (
+          <img 
+            src={imageUrl} 
+            alt={`${title} screenshot`}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center text-gray-400">
+              <FileCode className="w-16 h-16 mx-auto mb-2 opacity-50" />
+              <p className="text-sm font-mono">{title} Preview</p>
+            </div>
           </div>
-        </div>
+        )}
         <div className={`absolute inset-0 bg-gradient-to-t ${colors.gradient} to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300`} />
       </div>
 

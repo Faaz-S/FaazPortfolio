@@ -25,6 +25,7 @@ export default function Home() {
         'Human-in-loop review before merge'
       ],
       accentColor: 'green' as const,
+      imageUrl: '/CodeScribe.png',
     },
     {
       title: 'Raaz Tutoring',
@@ -35,6 +36,7 @@ export default function Home() {
         '< $5/mo costs, 17 students onboarded'
       ],
       accentColor: 'cyan' as const,
+      imageUrl: '/RaazTutoring.png',
     },
     {
       title: 'YU Snaps',
@@ -45,6 +47,7 @@ export default function Home() {
         '30+ active users'
       ],
       accentColor: 'red' as const,
+      imageUrl: '/YUSnaps.png',
     },
   ];
 
@@ -131,13 +134,12 @@ export default function Home() {
                 </div>
                 <div className="flex justify-center">
                   <div className="relative">
-                    <div className="w-80 h-80 bg-dark-card border-2 border-neon-cyan/30 rounded-xl flex items-center justify-center">
-                      <div className="text-center text-gray-400">
-                        <svg className="w-20 h-20 mx-auto mb-4 opacity-50" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
-                        <p className="text-sm font-mono">Professional Photo</p>
-                      </div>
+                    <div className="w-80 h-80 bg-dark-card border-2 border-neon-cyan/30 rounded-xl overflow-hidden">
+                      <img 
+                        src="/professional-photo.jpg" 
+                        alt="Faaz Sherwani - Professional Photo"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="absolute -inset-4 bg-gradient-to-r from-neon-green to-neon-cyan opacity-20 blur-xl rounded-xl animate-pulse"></div>
                   </div>

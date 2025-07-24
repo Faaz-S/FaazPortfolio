@@ -147,6 +147,16 @@
     background: linear-gradient(45deg, var(--neon-cyan), var(--neon-green));
     animation: float 8s infinite ease-in-out;
   }
+  
+  .floating-bubble.variant-1 {
+    background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+    animation: float 10s infinite ease-in-out;
+  }
+  
+  .floating-bubble.variant-2 {
+    background: linear-gradient(225deg, var(--neon-red), var(--neon-green));
+    animation: float 12s infinite ease-in-out;
+  }
 }
 
 @keyframes float {
