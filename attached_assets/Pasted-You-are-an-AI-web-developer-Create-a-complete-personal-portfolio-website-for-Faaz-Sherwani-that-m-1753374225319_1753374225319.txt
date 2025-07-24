@@ -1,0 +1,73 @@
+You are an AI web developer. Create a complete personal portfolio website for “Faaz Sherwani” that meets the following specifications:
+
+1. Technology stack  
+   • React (functional components + hooks + React Router)  
+   • Tailwind CSS for styling  
+   • React Helmet for SEO metadata  
+   • Optional: Dark/light toggle  
+
+2. Design guidelines  
+   • Overall dark theme (e.g. background #121212)  
+   • Neon accent palette (use CSS variables, e.g.  
+     – --neon-green: #39FF14  
+     – --neon-cyan:  #0FF  
+     – --neon-red:   #FF073A  
+   )  
+   • Smooth scroll, hover glow/underline animations on links  
+   • Responsive/mobile‑first layout  
+
+3. Content & structure  
+   – **Header/Nav**:  
+     • Name: Faaz Sherwani  
+     • Tagline: “Software Developer & Robotics Enthusiast”  
+     • Links: Home, About, Education, Experience, Projects, Skills, Contact  
+   – **Hero**:  
+     • Short intro pulled from LinkedIn summary (linkedin.com/in/faaz-sherwani)  
+     • Call‑to‑action button (“See My Work”)  
+   – **About**:  
+     • Brief bio (education, passion for robotics & tutoring)  
+     • Photo placeholder  
+     • “Download Résumé” button that links to `/Resume.pdf`  
+   – **Education**:  
+     • B.Sc. Computer Science (Hons.), York University (Expected April 2027), GPA 3.8/4  
+   – **Experience**:  
+     • Software Team Member, York University Robotics Society (Dec 2024–Present)  
+       – Developed ROS2 nodes for rover navigation (GPS, Haversine formula)  
+     • Math Instructor, Varsity Tutors (Part‑time)  
+       – One‑on‑one online tutoring in advanced functions, calculus, statistics  
+   – **Projects** (each with title, tech, bullets):  
+     • **CodeScribe** (Hack the 6ix 2025): Vellum AI, Gemini, Supabase, Linear & GitHub APIs, Warp CLI, Node.js  
+       – AI‑assisted pipeline: ticket→draft code→PR + ticket update  
+       – Human‑in‑loop review before merge  
+     • **Raaz Tutoring**: React, AWS S3/SES/Lambda  
+       – Serverless contact form, templated emails, <\$5/mo costs, 17 students onboarded  
+     • **YU Snaps**: React, Firebase auth & DB, hosted on Firebase  
+       – +15% Lighthouse score via WebP + resource preloading, 30+ active users  
+     • Link to blog post: “Cloud Debugging & Serverless Troubleshooting”  
+   – **Skills**: React, Tailwind CSS, AWS (S3, SES, Lambda), Firebase, ROS2, Node.js, Docker, Kubernetes, Vellum, LangChain, Git/GitHub, Python, Java  
+   – **Contact**:  
+     • Email: sherwanifaaz@gmail.com  
+     • Phone: (416) 909‑2600  
+     • LinkedIn: linkedin.com/in/faaz-sherwani  
+     • GitHub: github.com/Faaz-S  
+
+4. File & deployment setup  
+   • Scaffold with Create React App or Vite  
+   • /public:  
+     - index.html (include meta tags)  
+     - favicon.ico  
+     - **Resume.pdf** (the user’s résumé)  
+     - sitemap.xml template  
+   • /src/components: Header.jsx, Footer.jsx, SectionWrapper.jsx, ProjectCard.jsx, SkillBadge.jsx  
+   • /src/pages: Home.jsx, About.jsx, Education.jsx, Experience.jsx, Projects.jsx, Skills.jsx, Contact.jsx  
+   • tailwind.config.js configured for dark mode + neon CSS vars  
+   • package.json, README.md with “npm start” and “npm build” scripts  
+   • Deployment instructions for Vercel or Netlify  
+
+5. Bonus features (if time allows)  
+   • Light/dark mode switch  
+   • Scroll‑spy highlighting active section in nav  
+   • Animated neon underline on hover  
+   • Lazy‑load project images  
+
+Generate the full codebase—including package.json, Tailwind config, and README—so I can deploy immediately, with the résumé in `/public/Resume.pdf` and a “Download Résumé” button linking to it.```
