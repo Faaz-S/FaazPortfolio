@@ -1,52 +1,111 @@
 import { useEffect, useState } from 'react';
 
-interface Bubble {
+interface GeometricElement {
   id: number;
+  type: 'circle' | 'square' | 'line';
   size: number;
   x: number;
   y: number;
   delay: number;
+  duration: number;
 }
 
 export default function AnimatedBackground() {
-  const [bubbles, setBubbles] = useState<Bubble[]>([]);
+  const [elements, setElements] = useState<GeometricElement[]>([]);
 
   useEffect(() => {
-    const generateBubbles = () => {
-      const newBubbles: Bubble[] = [];
-      for (let i = 0; i < 12; i++) {
-        newBubbles.push({
+    const generateElements = () => {
+      const newElements: GeometricElement[] = [];
+      for (let i = 0; i < 8; i++) {
+        const types: ('circle' | 'square' | 'line')[] = ['circle', 'square', 'line'];
+        newElements.push({
           id: i,
-          size: Math.random() * 60 + 20, // 20-80px
+          type: types[i % 3],
+          size: Math.random() * 40 + 20, // 20-60px
           x: Math.random() * 100, // 0-100%
           y: Math.random() * 100, // 0-100%
-          delay: Math.random() * 8, // 0-8s delay
+          delay: Math.random() * 10, // 0-10s delay
+          duration: Math.random() * 20 + 15, // 15-35s duration
         });
       }
-      setBubbles(newBubbles);
+      setElements(newElements);
     };
 
-    generateBubbles();
+    generateElements();
   }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-      {bubbles.map((bubble) => {
-        const variant = bubble.id % 3 === 0 ? 'variant-1' : bubble.id % 3 === 1 ? 'variant-2' : '';
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 opacity-60" />
+      
+      {/* Geometric elements */}
+      {elements.map((element) => {
+        const baseClasses = "absolute opacity-5 animate-float-slow";
+        
+        if (element.type === 'circle') {
+          return (
+            <div
+              key={element.id}
+              className={`${baseClasses} rounded-full border border-gray-400`}
+              style={{
+                width: `${element.size}px`,
+                height: `${element.size}px`,
+                left: `${element.x}%`,
+                top: `${element.y}%`,
+                animationDelay: `${element.delay}s`,
+                animationDuration: `${element.duration}s`,
+              }}
+            />
+          );
+        }
+        
+        if (element.type === 'square') {
+          return (
+            <div
+              key={element.id}
+              className={`${baseClasses} border border-gray-400 rotate-45`}
+              style={{
+                width: `${element.size}px`,
+                height: `${element.size}px`,
+                left: `${element.x}%`,
+                top: `${element.y}%`,
+                animationDelay: `${element.delay}s`,
+                animationDuration: `${element.duration}s`,
+              }}
+            />
+          );
+        }
+        
+        // Line element
         return (
           <div
-            key={bubble.id}
-            className={`floating-bubble ${variant}`}
+            key={element.id}
+            className={`${baseClasses} bg-gray-400`}
             style={{
-              width: `${bubble.size}px`,
-              height: `${bubble.size}px`,
-              left: `${bubble.x}%`,
-              top: `${bubble.y}%`,
-              animationDelay: `${bubble.delay}s`,
+              width: `${element.size * 2}px`,
+              height: '1px',
+              left: `${element.x}%`,
+              top: `${element.y}%`,
+              animationDelay: `${element.delay}s`,
+              animationDuration: `${element.duration}s`,
+              transform: `rotate(${Math.random() * 360}deg)`,
             }}
           />
         );
       })}
+      
+      {/* Subtle grid pattern */}
+      <div 
+        className="absolute inset-0 opacity-3"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(156, 163, 175, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(156, 163, 175, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }}
+      />
     </div>
   );
 }

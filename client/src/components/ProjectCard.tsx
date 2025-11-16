@@ -9,6 +9,7 @@ interface ProjectCardProps {
   githubUrl?: string;
   liveUrl?: string;
   imageUrl?: string;
+  date?: string;
 }
 
 export default function ProjectCard({
@@ -20,6 +21,7 @@ export default function ProjectCard({
   githubUrl,
   liveUrl,
   imageUrl,
+  date,
 }: ProjectCardProps) {
   const colorClasses = {
     green: {
@@ -65,7 +67,12 @@ export default function ProjectCard({
       {/* Project Content */}
       <div className="p-6">
         <div className="flex items-start justify-between mb-2">
-          <h3 className={`text-xl font-bold ${colors.text}`}>{title}</h3>
+          <div>
+            <h3 className={`text-xl font-bold ${colors.text}`}>{title}</h3>
+            {date && (
+              <p className="text-xs text-gray-400 font-mono mt-1">{date}</p>
+            )}
+          </div>
           <div className="flex space-x-2">
             {githubUrl && (
               <a
@@ -90,7 +97,7 @@ export default function ProjectCard({
           </div>
         </div>
 
-        <p className="text-gray-300 text-sm mb-4">{description}</p>
+        <p className="text-gray-600 text-sm mb-4">{description}</p>
 
         {/* Technologies */}
         <div className="flex flex-wrap gap-2 mb-4">
