@@ -1,17 +1,31 @@
 import { Helmet } from 'react-helmet';
-import { Download, ExternalLink, Mail, Phone, Linkedin, Github } from 'lucide-react';
+import { Download, ExternalLink, Mail, Phone, Linkedin, Github, Play, Pause } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import ProjectCard from '@/components/ProjectCard';
 import SkillBadge from '@/components/SkillBadge';
 import SectionWrapper from '@/components/SectionWrapper';
+import { useState, useRef } from 'react';
 
 export default function Home() {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const toggleVideo = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play().catch(console.error);
+      } else {
+        videoRef.current.pause();
+      }
     }
   };
 
@@ -147,6 +161,52 @@ export default function Home() {
                     </div>
                     <div className="absolute -inset-4 bg-gradient-to-r from-neon-green to-neon-cyan opacity-20 blur-xl rounded-xl"></div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </SectionWrapper>
+
+          {/* Why Me Video Section */}
+          <SectionWrapper id="why-me" className="py-20">
+            <div className="container mx-auto px-6">
+              <h2 className="text-4xl font-bold text-center mb-16 neon-text">Why Choose Me?</h2>
+              <div className="max-w-2xl mx-auto">
+                <div className="relative bg-dark-card border-2 border-neon-cyan/30 rounded-xl overflow-hidden group hover:border-neon-cyan/60 transition-all duration-300">
+                  <video
+                    ref={videoRef}
+                    className="w-full h-auto max-h-96"
+                    controls={false}
+                    poster="/professional-photo.jpg"
+                    onClick={toggleVideo}
+                    onPlay={() => setIsVideoPlaying(true)}
+                    onPause={() => setIsVideoPlaying(false)}
+                    onEnded={() => setIsVideoPlaying(false)}
+                  >
+                    <source src="/Why-Me.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  
+                  {/* Custom Play/Pause Overlay - Only show when paused */}
+                  {!isVideoPlaying && (
+                    <div 
+                      className="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer group-hover:bg-black/30 transition-all duration-300"
+                      onClick={toggleVideo}
+                    >
+                      <div className="bg-dark-card/90 border-2 border-neon-cyan rounded-full p-6 group-hover:border-neon-green group-hover:scale-110 transition-all duration-300 neon-glow">
+                        <Play className="w-12 h-12 text-neon-cyan group-hover:text-neon-green transition-colors ml-1" />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Gradient Border Effect */}
+                  <div className="absolute -inset-4 bg-gradient-to-r from-neon-cyan to-neon-green opacity-20 blur-xl rounded-xl group-hover:opacity-30 transition-opacity duration-300 pointer-events-none"></div>
+                </div>
+                
+                <div className="text-center mt-8">
+                  <p className="text-lg text-gray-600 leading-relaxed max-w-xl mx-auto">
+                    Get to know me better through this personal introduction where I share my passion for technology, 
+                    my approach to problem-solving, and what drives me as a developer and robotics enthusiast.
+                  </p>
                 </div>
               </div>
             </div>
